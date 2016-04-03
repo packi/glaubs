@@ -7,8 +7,9 @@
 [Node.js](http://nodejs.org/).*
 
 * `$ mkvirtualenv -p `which python3` glaubs`
-* `$ cd thinkster-django-angular-boilerplate/`
-* `$ pip install Django djangorestframework drf-nested-routers rest_framework_nested
+* `$ cd glaubs/`
+* `$ sudo apt-get install libpython3-dev npm node-legacy`
+* `$ pip install Django djangorestframework drf-nested-routers django-compressor`
 * `$ npm install bower`
 * `$ npm install`
 * `$ bower install`
