@@ -1,0 +1,27 @@
+<div>
+<button class="btn" ng-click="addVisible = !addVisible">Add municipality</button>
+<div ng-init="addVisible = false" ng-show="addVisible">
+<form role="form" ng-submit="vm.createMunicipality()">
+        <div ng-include src="'static/templates/municipalities/municipalities_edit.html'"></div>
+        <div class="form-group">
+          <button type="submit" class="btn btn-primary">Submit</button> 
+        </div>
+</form>
+</div>
+</div>
+<table>
+<tr>
+<th>
+Name
+</th>
+<th>
+ZIP Code
+</th>
+<th>
+Actions
+</th>
+</tr>
+<tr ng-repeat="m in municipalities"><td>{{m.name}}</td><td>{{m.zip_code}}</td><td><a href="" confirmed-click="vm.deleteMunicipality(m.id)"
+    ng-confirm-click="Are you sure to delete {{m.name}}?">Delete</a></td></tr>
+</table>
+</div>
