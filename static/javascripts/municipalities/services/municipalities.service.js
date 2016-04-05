@@ -12,6 +12,8 @@
             load: load,
             create: create,
             del: del,
+            load_one: load_one,
+            update: update,
         };
 
         return Municipalities;
@@ -21,8 +23,22 @@
             $http.get('/api/v1/municipalities/').success(callback);
         }
 
+        function load_one(id, callback) {
+            $http.get('/api/v1/municipalities/' + id + '/').success(callback);
+        }
+
         function create(name, zip_code, address, phone_number, comment) {
             return $http.post('/api/v1/municipalities/', {
+                name: name,
+                zip_code: zip_code,
+                address: address,
+                phone_number: phone_number,
+                comment: comment,
+            });
+        }
+
+        function update(id, name, zip_code, address, phone_number, comment) {
+            return $http.put('/api/v1/municipalities/' + id + '/', {
                 name: name,
                 zip_code: zip_code,
                 address: address,

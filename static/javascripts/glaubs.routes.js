@@ -16,6 +16,10 @@
       controller: 'MunicipalitiesController', 
       controllerAs: 'vm',
       templateUrl: '/static/templates/municipalities/municipalities.html'
+    }).when('/municipalities/:id', {
+      controller: 'MunicipalitiesEditController',
+      controllerAs: 'vm',
+      templateUrl: '/static/templates/municipalities/municipalities_editor.html'
     }).otherwise('/');
   }
 })();

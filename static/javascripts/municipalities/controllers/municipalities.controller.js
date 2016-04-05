@@ -20,6 +20,7 @@
     function refresh() { 
         Municipalities.load(function(municipalities) {
            $scope.municipalities = municipalities;
+           $scope.municipality = {};
         });
     }
 
@@ -28,16 +29,20 @@
     vm.createMunicipality = createMunicipality;
     vm.deleteMunicipality = deleteMunicipality;
 
-
     /**
     * @memberOf glaubs.municipalities.controllers.MunicipalitiesController
     */
     function createMunicipality() {
-        Municipalities.create(vm.name, vm.zip_code, vm.address, vm.phone_number, vm.comment)
-          .success(function() {
-              $scope.addVisible = false;
-              refresh();
-          });
+        Municipalities.create(
+            $scope.municipality.name,
+            $scope.municipality.zip_code,
+            $scope.municipality.address,
+            $scope.municipality.phone_number,
+            $scope.municipality.comment
+        ).success(function() {
+            $scope.addVisible = false;
+            refresh();
+        });
     }
 
     function deleteMunicipality(id) {
