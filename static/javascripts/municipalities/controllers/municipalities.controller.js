@@ -24,10 +24,14 @@
         });
     }
 
+    $scope.query = '';
+
+    angular.element('#searchMunicipality__query').focus()
     refresh();
 
     vm.createMunicipality = createMunicipality;
     vm.deleteMunicipality = deleteMunicipality;
+    vm.searchMunicipality = searchMunicipality;
 
     /**
     * @memberOf glaubs.municipalities.controllers.MunicipalitiesController
@@ -49,6 +53,13 @@
         Municipalities.del(id)
           .success(function() {
               refresh();
+          });
+    }
+
+    function searchMunicipality() {
+        Municipalities.search($scope.query)
+          .success(function(municipalities) {
+              $scope.municipalities = municipalities;
           });
     }
 

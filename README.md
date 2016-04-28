@@ -9,7 +9,7 @@
 * `$ mkvirtualenv -p `which python3` glaubs`
 * `$ cd glaubs/`
 * `$ sudo apt-get install libpython3-dev npm node-legacy`
-* `$ pip install Django djangorestframework drf-nested-routers django-compressor`
+* `$ pip install Django djangorestframework drf-nested-routers django-compressor django-extensions`
 * `$ npm install bower`
 * `$ npm install`
 * `$ bower install`

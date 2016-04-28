@@ -14,6 +14,7 @@
             del: del,
             load_one: load_one,
             update: update,
+            search: search,
         };
 
         return Municipalities;
@@ -35,6 +36,10 @@
                 phone_number: phone_number,
                 comment: comment,
             });
+        }
+
+        function search(query) {
+            return $http.get('/api/v1/municipalities/search?q=' + query);
         }
 
         function update(id, name, zip_code, address, phone_number, comment) {

@@ -1,4 +1,13 @@
 <div>
+<form role="form" ng-submit="vm.searchMunicipality()">
+    <div class="form-group">
+        <label for="searchMunicipality__query">Name</label>
+        <input type="text" class="form-control" id="searchMunicipality__query" ng-model="query" placeholder="ex. 8001" />
+    </div>
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </div>
+</form>
 <button class="btn" ng-click="addVisible = !addVisible">Add municipality</button>
 <div ng-init="addVisible = false" ng-show="addVisible">
 <form role="form" ng-submit="vm.createMunicipality()">
@@ -22,6 +31,6 @@ Actions
 </th>
 </tr>
 <tr ng-repeat="m in municipalities"><td>{{m.name}}</td><td>{{m.zip_code}}</td><td><a href="" confirmed-click="vm.deleteMunicipality(m.id)"
-    ng-confirm-click="Are you sure to delete {{m.name}}?">Delete</a> <a href="#/municipalities/{{m.id}}">Details</a></td></tr>
+    ng-confirm-click="Are you sure to delete {{m.name}}?">Delete</a> <a href="#/municipalities/{{m.id}}">Details</a> <a href="#/municipalities/{{m.id}}/mailings/new">New Mailing</a></td></tr>
 </table>
 </div>

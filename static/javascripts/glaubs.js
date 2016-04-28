@@ -5,7 +5,8 @@
     .module('glaubs', [
       'glaubs.config',
       'glaubs.routes',
-      'glaubs.municipalities'
+      'glaubs.municipalities',
+      'glaubs.mailings',
     ])
     .run(run);
 
@@ -14,6 +15,9 @@
 
   angular
     .module('glaubs.municipalities', []);
+
+  angular
+    .module('glaubs.mailings', []);
 
   angular
     .module('glaubs.routes', ['ngRoute']);

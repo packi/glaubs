@@ -1,0 +1,43 @@
+<h2 ng-if="vm.is_new_mailing">New Mailing for {{municipality.zip_code}} {{municipality.name}}</h2>
+<h2 ng-if="!vm.is_new_mailing">Edit Mailing {{mailing.id}} for {{municipality.zip_code}} {{municipality.name}}</h2>
+
+<form role="form" ng-submit="vm.createMailing()">
+    <div class="form-group">
+        <label for="createMailing__from_number">From number</label>
+        <input type="text" class="form-control" id="createMailing__from_number" ng-readonly="!vm.is_new_mailing" ng-model="mailing.from_number" placeholder="1234" />
+    </div>
+
+    <div class="form-group">
+        <label for="createMailing__to_number">To number</label>
+        <input type="text" class="form-control" id="createMailing__to_number" ng-readonly="!vm.is_new_mailing" ng-model="mailing.to_number" placeholder="1235" />
+    </div>
+
+    <div class="form-group">
+        <label for="createMailing__number_of_signatures">Number of signatures</label>
+        <input type="text" class="form-control" id="createMailing__number_of_signatures" ng-readonly="!vm.is_new_mailing" ng-model="mailing.number_of_signatures" placeholder="..." />
+    </div>
+
+    <div class="form-group" ng-if="!vm.is_new_mailing">
+        <label for="createMailing__valid_signatures">Valid signatures</label>
+        <input type="text" class="form-control" id="createMailing__valid_signatures" ng-model="mailing.valid_signatures" placeholder="..." />
+    </div>
+
+    <div class="form-group">
+        <button ng-if="vm.is_new_mailing" type="submit" class="btn btn-primary">Create</button>
+        <button ng-if="!vm.is_new_mailing" type="submit" class="btn btn-primary">Update</button>
+    </div>
+</form>
+
+<table>
+    <tr>
+        <th>ID</th>
+        <th>Number of Signatures</th>
+        <th>Actions</th>
+    </tr>
+    <tr ng-repeat="m in mailings">
+        <td>{{m.id}}</td>
+        <td>{{m.number_of_signatures}}</td>
+        <td><a href="#/municipalities/{{municipality.id}}/mailings/{{m.id}}">Details</a> <a href="#/municipalities/{{m.id}}/mailings/new">Update Mailing</a></td>
+    </tr>
+</table>
+
