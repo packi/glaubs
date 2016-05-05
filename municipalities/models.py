@@ -10,6 +10,9 @@ class Municipality(models.Model):
     comment = models.TextField(null=True)
     political_municipality = models.ForeignKey('self', null=True)
     language = models.CharField(max_length=10, default='de')
+    canton = models.CharField(max_length=2, null=True)
+    website = models.TextField(null=True)
+    email = models.TextField(null=True)
 
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)    
