@@ -16,3 +16,4 @@ class Command(BaseCommand):
             main_municipality = Municipality.objects.get(id=m['id__min'])
             print(main_municipality.bfs_number, main_municipality.zip_code, main_municipality.name)
             main_municipality.main_municipality = True
+            main_municipality.save()
