@@ -50,3 +50,21 @@ class SearchMunicipality(APIView):
             serializer = self.serializer_class(data=[], many=True)
             serializer.is_valid()
             return response.Response(serializer.data)
+
+
+class PrimaryMunicipality(APIView):
+
+    serializer_class = MunicipalitySerializer
+
+    def get(self, request):
+        id = request.query_params['id']
+        selected = Municipality.objects.get(id=id)
+        same_bfs_number = Municipality.objects.filter(bfs_number=selected.bfs_number)
+        primary = selected
+        for m in same_bfs_number:
+            if m.main_municipality:
+                primary = m
+                break
+
+        serializer = self.serializer_class(primary)
+        return response.Response(serializer.data)
