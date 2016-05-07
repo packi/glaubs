@@ -16,6 +16,7 @@
             update: update,
             search: search,
             get_primary: get_primary,
+            related: related,
         };
 
         return Municipalities;
@@ -41,6 +42,10 @@
 
         function get_primary(id) {
             return $http.get('/api/v1/municipalities/primary?id=' + id);
+        }
+
+        function related(id) {
+            return $http.get('/api/v1/municipalities/related?id=' + id);
         }
 
         function search(query) {

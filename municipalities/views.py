@@ -68,3 +68,22 @@ class PrimaryMunicipality(APIView):
 
         serializer = self.serializer_class(primary)
         return response.Response(serializer.data)
+
+
+class RelatedMunicipalities(APIView):
+
+    def get(self, request):
+        id = request.query_params['id']
+        selected = Municipality.objects.get(id=id)
+        same_bfs_number = Municipality.objects.filter(bfs_number=selected.bfs_number)
+        result = []
+        for m in same_bfs_number:
+            result.append({
+                'zip_code': m.zip_code,
+                'name': m.name,
+                'id': m.id,
+                'primary': m.main_municipality
+            })
+
+        return response.Response(result)
+
