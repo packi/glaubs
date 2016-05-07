@@ -3,6 +3,7 @@
 
   angular
     .module('glaubs', [
+      'ui.bootstrap',
       'glaubs.config',
       'glaubs.routes',
       'glaubs.municipalities',

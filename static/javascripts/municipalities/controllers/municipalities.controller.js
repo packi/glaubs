@@ -17,21 +17,16 @@
   function MunicipalitiesController($location, $scope, Municipalities) {
     var vm = this;
 
-    function refresh() { 
-        Municipalities.load(function(municipalities) {
-           $scope.municipalities = municipalities;
-           $scope.municipality = {};
-        });
-    }
-
     $scope.query = '';
+    $scope.municipality = null;
 
     angular.element('#searchMunicipality__query').focus()
-    refresh();
 
     vm.createMunicipality = createMunicipality;
     vm.deleteMunicipality = deleteMunicipality;
     vm.searchMunicipality = searchMunicipality;
+    vm.lookupMunicipality = lookupMunicipality;
+    vm.selected = selected;
 
     /**
     * @memberOf glaubs.municipalities.controllers.MunicipalitiesController
@@ -56,11 +51,28 @@
           });
     }
 
+    function lookupMunicipality(q) {
+        return Municipalities.search(q).then(function(response) {
+            return response.data;
+        });
+    }
+
+    function selected($item) {
+        console.log($item);
+        Municipalities.get_primary($item.id).success(function(municipality) {
+            $scope.municipality = municipality;
+        });
+    }
+
     function searchMunicipality() {
-        Municipalities.search($scope.query)
-          .success(function(municipalities) {
-              $scope.municipalities = municipalities;
-          });
+        if ($scope.query !== '') {
+            Municipalities.search($scope.query)
+              .success(function(municipalities) {
+                  $scope.municipalities = municipalities;
+              });
+        } else {
+            $scope.municipalities = [];
+        }
     }
 
   }

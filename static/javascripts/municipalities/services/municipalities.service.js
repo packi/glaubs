@@ -15,6 +15,7 @@
             load_one: load_one,
             update: update,
             search: search,
+            get_primary: get_primary,
         };
 
         return Municipalities;
@@ -36,6 +37,10 @@
                 phone_number: phone_number,
                 comment: comment,
             });
+        }
+
+        function get_primary(id) {
+            return $http.get('/api/v1/municipalities/primary?id=' + id);
         }
 
         function search(query) {
