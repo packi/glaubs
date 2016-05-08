@@ -42,14 +42,18 @@
 
 <table>
     <tr>
-        <th>ID</th>
+        <th>Sent on</th>
+        <th>Received on</th>
+        <th>State</th>
         <th>Number of Signatures</th>
         <th>Actions</th>
     </tr>
     <tr ng-repeat="m in mailings">
-        <td>{{m.id}}</td>
+        <td>{{m.sent_on | date}}</td>
+        <td>{{m.received_on | date}}</td>
+        <td>{{m.state}}</td>
         <td>{{m.number_of_signatures}}</td>
-        <td><a href="#/municipalities/{{municipality.id}}/mailings/{{m.id}}">Details</a> <a href="#/municipalities/{{m.id}}/mailings/new">Update Mailing</a></td>
+        <td><a href="#/municipalities/{{municipality.id}}/mailings/{{m.pk}}">Details</a></td>
     </tr>
 </table>
 

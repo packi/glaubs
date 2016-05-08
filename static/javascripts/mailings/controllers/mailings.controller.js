@@ -32,9 +32,6 @@
                 $scope.mailing.from_number = resp['max_number'] + 1;
                 angular.element('#createMailing__to_number').focus();
             });
-            Mailings.load(vm.municipality_id, function(mailings) {
-                $scope.mailings = mailings;
-            });
         } else {
             Mailings.load_one(vm.municipality_id, vm.mailing_id).success(function(mailing) {
                 if (new_state !== null) {
@@ -50,6 +47,17 @@
                 }
             });
         }
+        Mailings.load(vm.municipality_id, function(mailings) {
+            mailings.forEach(function(mailing) {
+                if (mailing.sent_on !== null) {
+                    mailing.sent_on = Date.parse(mailing.sent_on);
+                }
+                if (mailing.received_on !== null) {
+                    mailing.received_on = Date.parse(mailing.received_on);
+                }
+            });
+            $scope.mailings = mailings;
+        });
     }
 
     refresh(null);
