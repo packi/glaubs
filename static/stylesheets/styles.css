@@ -2,3 +2,7 @@ td, th {
     padding: 2px;
     vertical-align: top;
 }
+
+.btn {
+    color: rgba(180, 180, 180, 0.84)
+}
