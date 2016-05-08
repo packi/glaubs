@@ -52,14 +52,8 @@
             return $http.get('/api/v1/municipalities/search?q=' + query);
         }
 
-        function update(id, name, zip_code, address, phone_number, comment) {
-            return $http.put('/api/v1/municipalities/' + id + '/', {
-                name: name,
-                zip_code: zip_code,
-                address: address,
-                phone_number: phone_number,
-                comment: comment,
-            });
+        function update(id, municipality) {
+            return $http.put('/api/v1/municipalities/' + id + '/', municipality);
         }
 
         function del(id) {
