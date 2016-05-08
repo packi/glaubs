@@ -24,7 +24,7 @@
         <tr><td><b>PLZ</b></td><td>{{selected.zip_code}}</td></tr>
         <tr><td><b>Name</b></td><td>{{selected.name}}</td></tr>
         <tr><td><b>Canton</b></td><td>{{selected.canton}}</td></tr>
-        <tr><td><b>Address</b></td><td>{{selected.address}}</td></tr>
+        <tr><td><b>Address</b></td><td style="white-space:pre-wrap;">{{selected.address}}</td></tr>
     </table>
 </div>
 <div ng-if="municipality !== null" style="float: left; padding-right: 10px;">
@@ -33,7 +33,7 @@
         <tr><td><b>PLZ</b></td><td>{{municipality.zip_code}}</td></tr>
         <tr><td><b>Name</b></td><td>{{municipality.name}}</td></tr>
         <tr><td><b>Canton</b></td><td>{{municipality.canton}}</td></tr>
-        <tr><td><b>Address</b></td><td>{{municipality.address}}</td></tr>
+        <tr><td><b>Address</b></td><td style="white-space: pre-wrap;">{{municipality.address}}</td></tr>
     </table>
 </div>
 <div ng-if="related !== null" style="float: left; padding-right: 10px;">
