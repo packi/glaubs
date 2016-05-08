@@ -25,6 +25,9 @@
         <tr><td><b>Name</b></td><td>{{selected.name}}</td></tr>
         <tr><td><b>Canton</b></td><td>{{selected.canton}}</td></tr>
         <tr><td><b>Address</b></td><td style="white-space:pre-wrap;">{{selected.address}}</td></tr>
+        <tr><td><b>Phone</b></td><td><a href="tel:{{selected.phone_number}}">{{selected.phone_number}}</a></td></tr>
+        <tr><td><b>E-Mail</b></td><td><a href="mailto:{{selected.email}}">{{selected.email}}</a></td></tr>
+        <tr><td><b>Website</b></td><td><a href="{{selected.website}}">{{selected.website}}</a></td></tr>
     </table>
 </div>
 <div ng-if="municipality !== null" style="float: left; padding-right: 10px;">
@@ -34,6 +37,9 @@
         <tr><td><b>Name</b></td><td>{{municipality.name}}</td></tr>
         <tr><td><b>Canton</b></td><td>{{municipality.canton}}</td></tr>
         <tr><td><b>Address</b></td><td style="white-space: pre-wrap;">{{municipality.address}}</td></tr>
+        <tr><td><b>Phone</b></td><td><a href="tel:{{municipality.phone_number}}">{{municipality.phone_number}}</a></td></tr>
+        <tr><td><b>E-Mail</b></td><td><a href="mailto:{{municipality.email}}">{{municipality.email}}</a></td></tr>
+        <tr><td><b>Website</b></td><td><a href="{{municipality.website}}">{{municipality.website}}</a></td></tr>
     </table>
 </div>
 <div ng-if="related !== null" style="float: left; padding-right: 10px;">
