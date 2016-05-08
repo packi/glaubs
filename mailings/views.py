@@ -85,7 +85,7 @@ class PDFView(views.APIView):
     def _get_or_create_mailing_pdf(self, id, municipality_id):
         mailing = Mailing.objects.all().get(id=id, municipality=municipality_id)
 
-        if mailing.state == 'pdf_generated' and mailing.pdf_file is not None:
+        if mailing.state == 'sent' and mailing.pdf_file is not None:
             result = os.path.join(self._get_target_dir(), mailing.pdf_file)
         else:
             result = self._create_pdf(mailing)
@@ -121,7 +121,7 @@ class PDFView(views.APIView):
 
             shutil.move(os.path.join(tempdir, 'texput.pdf'), target)
 
-        mailing.state = 'pdf_generated'
+        mailing.state = 'sent'
         mailing.pdf_file = target_file
         mailing.save()
 

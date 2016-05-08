@@ -25,14 +25,14 @@
     <div class="form-group">
         <a id="createMailing__generate_pdf"
            ng-if="!vm.is_new_mailing && mailing.state === 'new'"
-           ng-click="vm.refresh('pdf_generated')"
+           ng-click="vm.refresh('sent')"
            target="_self"
            download="anschreiben.pdf"
            href="/api/v1/mailings/pdf?municipality_id={{municipality.id}}&id={{mailing.pk}}"
            class="btn btn-raised">Generate PDF</a>
         <button ng-if="vm.is_new_mailing" type="submit" class="btn btn-primary">Create</button>
         <button ng-if="!vm.is_new_mailing" type="submit" class="btn btn-primary">Update</button>
-        <a ng-if="!vm.is_new_mailing && mailing.state === 'pdf_generated'"
+        <a ng-if="!vm.is_new_mailing && mailing.state === 'sent'"
            target="_self"
            download="anschreiben.pdf"
            href="/api/v1/mailings/pdf?municipality_id={{municipality.id}}&id={{mailing.pk}}"
