@@ -8,7 +8,7 @@
 
 * `$ mkvirtualenv -p `which python3` glaubs`
 * `$ cd glaubs/`
-* `$ sudo apt-get install libpython3-dev npm node-legacy texlive-latex-recommended texlive-lang-german texlive-latex-extra`
+* `$ sudo apt-get install libpython3-dev npm node-legacy texlive-latex-recommended texlive-lang-german texlive-latex-extra texlive-lang-french texlive-lang-italian`
 * `$ pip install Django djangorestframework drf-nested-routers django-compressor django-extensions jinja2`
 * `$ npm install bower`
 * `$ npm install`
