@@ -55,8 +55,8 @@
             from_number: $scope.mailing.from_number,
             to_number: $scope.mailing.to_number,
             number_of_signatures: $scope.mailing.number_of_signatures,
-        }).success(function() {
-            refresh();
+        }).success(function(mailing) {
+            $location.path('/municipalities/' + vm.municipality_id + '/mailings/' + mailing.pk);
         });
     }
 
