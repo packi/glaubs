@@ -25,7 +25,7 @@ class MailingViewSet(viewsets.ViewSet):
     serializer_class = MailingSerializer
 
     def list(self, request, municipality_id=None):
-        mailings = self.queryset.filter(municipality=municipality_id)
+        mailings = self.queryset.filter(municipality=municipality_id).order_by('-pk')
 
         if mailings is not None:
             serializer = self.serializer_class(data=mailings, many=True)
