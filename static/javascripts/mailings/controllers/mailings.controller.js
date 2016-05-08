@@ -9,21 +9,21 @@
     .module('glaubs.mailings.controllers')
     .controller('MailingsController', MailingsController);
 
-  MailingsController.$inject = ['$location', '$scope', '$routeParams', 'Mailings', 'Municipalities'];
+  MailingsController.$inject = ['$location', '$scope', '$routeParams', '$timeout', 'Mailings', 'Municipalities'];
 
   /**
   * @namespace MailingsController
   */
-  function MailingsController($location, $scope, $routeParams, Mailings, Municipalities) {
+  function MailingsController($location, $scope, $routeParams, $timeout, Mailings, Municipalities) {
     var vm = this;
     vm.municipality_id = $routeParams.municipality_id;
     vm.mailing_id = $routeParams.mailing_id;
     vm.is_new_mailing = vm.mailing_id == 'new';
 
-    function refresh() {
-        $scope.mailing = {};
-        $scope.mailings = {};
+    $scope.mailing = {};
+    $scope.mailings = [];
 
+    function refresh(new_state) {
         Municipalities.load_one(vm.municipality_id, function(municipality) {
             $scope.municipality = municipality;
         });
@@ -37,15 +37,26 @@
             });
         } else {
             Mailings.load_one(vm.municipality_id, vm.mailing_id).success(function(mailing) {
+                if (new_state !== null) {
+                    // things happen in parallel, so the server may not have the new state just yet
+                    mailing.state = new_state;
+                }
                 $scope.mailing = mailing;
+
+                if (mailing.state === 'new') {
+                    $timeout(function() {
+                        angular.element('#createMailing__generate_pdf').focus();
+                    });
+                }
             });
         }
     }
 
-    refresh();
+    refresh(null);
 
     vm.createMailing = createMailing;
     vm.deleteMailing = deleteMailing;
+    vm.refresh = refresh;
 
     /**
     * @memberOf glaubs.mailings.controllers.MailingsController
