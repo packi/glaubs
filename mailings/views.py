@@ -75,16 +75,24 @@ class PDFView(views.APIView):
     def get(self, request):
         municipality_id = request.query_params['municipality_id']
         id = request.query_params['id']
-        target_file = self._render_mailing_pdf(id, municipality_id)
+        target_file = self._get_or_create_mailing_pdf(id, municipality_id)
 
         wrapper = FileWrapper(open(target_file, 'rb'))
         resp = HttpResponse(wrapper, content_type='application/pdf')
         resp['Content-Length'] = os.path.getsize(target_file)
         return resp
 
-    def _render_mailing_pdf(self, id, municipality_id):
+    def _get_or_create_mailing_pdf(self, id, municipality_id):
         mailing = Mailing.objects.all().get(id=id, municipality=municipality_id)
 
+        if mailing.state == 'pdf_generated' and mailing.pdf_file is not None:
+            result = os.path.join(self._get_target_dir(), mailing.pdf_file)
+        else:
+            result = self._create_pdf(mailing)
+
+        return result
+
+    def _create_pdf(self, mailing):
         env = Environment(loader=PackageLoader('glaubs', 'tex'))
         template = env.get_template(os.path.join(mailing.municipality.language, 'anschreiben.tex'))
         params = {
@@ -97,11 +105,10 @@ class PDFView(views.APIView):
         }
         output = template.render(**params).encode('utf-8')
 
-        target_dir = self._get_target_dir()
         target_file = '{}_{}_{}.pdf'.format(mailing.municipality.pk,
                                             mailing.pk,
                                             datetime.datetime.now().isoformat()[:19])
-        target_file = os.path.join(target_dir, target_file)
+        target = os.path.join(self._get_target_dir(), target_file)
 
         with tempfile.TemporaryDirectory() as tempdir:
             process = subprocess.Popen(
@@ -112,9 +119,10 @@ class PDFView(views.APIView):
             )
             process.communicate(output)
 
-            shutil.move(os.path.join(tempdir, 'texput.pdf'), target_file)
+            shutil.move(os.path.join(tempdir, 'texput.pdf'), target)
 
         mailing.state = 'pdf_generated'
+        mailing.pdf_file = target_file
         mailing.save()
 
         return target_file
