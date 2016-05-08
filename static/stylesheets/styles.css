@@ -3,6 +3,6 @@ td, th {
     vertical-align: top;
 }
 
-.btn {
+a.btn {
     color: rgba(180, 180, 180, 0.84)
 }
