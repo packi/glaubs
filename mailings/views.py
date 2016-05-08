@@ -45,11 +45,13 @@ class MailingViewSet(viewsets.ViewSet):
         serializer = self.serializer_class(data=data)
 
         if serializer.is_valid():
-            Mailing.objects.create(**serializer.validated_data)
+            mailing = Mailing(**serializer.validated_data)
+            mailing.save()
 
-            serializer.validated_data['municipality'] = None
+            serializer = self.serializer_class(mailing)
+            serializer.data['municipality'] = None
 
-            return response.Response(serializer.validated_data, status=status.HTTP_201_CREATED)
+            return response.Response(serializer.data, status=status.HTTP_201_CREATED)
 
         return response.Response({'status': 'Bad request', 'message': 'Couldnt validate'}, status=status.HTTP_400_BAD_REQUEST)
 
@@ -111,6 +113,9 @@ class PDFView(views.APIView):
             process.communicate(output)
 
             shutil.move(os.path.join(tempdir, 'texput.pdf'), target_file)
+
+        mailing.state = 'pdf_generated'
+        mailing.save()
 
         return target_file
 
