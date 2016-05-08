@@ -28,10 +28,15 @@
            ng-click="vm.refresh('pdf_generated')"
            target="_self"
            download="anschreiben.pdf"
-           href="/api/v1/mailings/generate_pdf?municipality_id={{municipality.id}}&id={{mailing.pk}}"
+           href="/api/v1/mailings/pdf?municipality_id={{municipality.id}}&id={{mailing.pk}}"
            class="btn btn-raised">Generate PDF</a>
         <button ng-if="vm.is_new_mailing" type="submit" class="btn btn-primary">Create</button>
         <button ng-if="!vm.is_new_mailing" type="submit" class="btn btn-primary">Update</button>
+        <a ng-if="!vm.is_new_mailing && mailing.state === 'pdf_generated'"
+           target="_self"
+           download="anschreiben.pdf"
+           href="/api/v1/mailings/pdf?municipality_id={{municipality.id}}&id={{mailing.pk}}"
+           class="btn btn-raised">Download PDF</a>
     </div>
 </form>
 
