@@ -125,7 +125,7 @@ class PDFView(views.APIView):
         mailing.pdf_file = target_file
         mailing.save()
 
-        return target_file
+        return target
 
     def _get_target_dir(self):
         retval = os.path.abspath(os.path.join(os.path.dirname(glaubs.__file__), '..', 'pdfs'))
