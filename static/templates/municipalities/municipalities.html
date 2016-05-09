@@ -1,7 +1,10 @@
 <form role="form">
     <div class="form-group">
         <label for="searchMunicipality__query">Name</label>
-        <input type="text" class="form-control" id="searchMunicipality__query"
+        <input type="text"
+               class="form-control"
+               id="searchMunicipality__query"
+               autocomplete="off"
                ng-model="query"
                placeholder="ex. 8001"
                uib-typeahead="m.zip_code + ' ' + m.name + ' (' + m.id + ')' for m in vm.lookupMunicipality($viewValue)"
