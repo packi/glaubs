@@ -21,11 +21,25 @@ class Command(BaseCommand):
                 if not zip_code:
                     zip_code = row[0]
                 address = '\n'.join([row[1], row[2], zip_code + ' ' + row[4]])
+                place = row[4]
 
-                municipalities = Municipality.objects.filter(zip_code=zip_code)
+                found = False
+                municipalities = Municipality.objects.filter(zip_code=zip_code, name=place)
                 for m in municipalities:
-                    m.address = address
-                    m.phone_number = row[5]
-                    m.email = row[7]
-                    m.website = row[8]
-                    m.save()
+                    found = True
+                    self._update_municipality(address, m, row)
+
+                if not found:
+                    print(u'Not found {} {}'.format(zip_code, place))
+                    municipalities = Municipality.objects.filter(zip_code=zip_code)
+                    for m in municipalities:
+                        print(u'* Updating {} {}'.format(m.zip_code, m.name))
+                        self._update_municipality(address, m, row)
+
+    def _update_municipality(self, address, m, row):
+        m.address = address
+        m.phone_number = row[5]
+        m.email = row[7]
+        m.website = row[8]
+        m.main_municipality = True
+        m.save()
