@@ -40,7 +40,7 @@ class MailingViewSet(viewsets.ViewSet):
         data = request.data
         data['municipality'] = municipality_id
         if data['to_number'].startswith('+'):
-            data['to_number'] = int(data['to_number'][1:]) + int(data['from_number'])
+            data['to_number'] = int(data['to_number'][1:]) + int(data['from_number']) - 1
 
         serializer = self.serializer_class(data=data)
 
