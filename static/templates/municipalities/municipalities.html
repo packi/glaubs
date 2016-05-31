@@ -17,7 +17,6 @@
         </div>
         <div ng-if="municipality !== null">
             <a href="#/municipalities/{{municipality.id}}/mailings/new" class="btn btn-raised">New Mailing</a>
-            <a href="#/municipalities/{{selected.id}}" class="btn btn-raised">Edit Municipality</a>
         </div>
     </div>
 </form>
@@ -32,6 +31,7 @@
         <tr><td><b>E-Mail</b></td><td><a href="mailto:{{selected.email}}">{{selected.email}}</a></td></tr>
         <tr><td><b>Website</b></td><td><a href="{{selected.website}}">{{selected.website}}</a></td></tr>
         <tr><td><b>Validated</b></td><td>{{selected.validated ? 'yes' : 'no'}}</td></tr>
+        <tr><td colspan="2"><a href="#/municipalities/{{selected.id}}" class="btn btn-raised">Edit Municipality</a></td></tr>
     </table>
 </div>
 <div ng-if="municipality !== null" style="float: left; padding-right: 10px;">
@@ -45,6 +45,7 @@
         <tr><td><b>E-Mail</b></td><td><a href="mailto:{{municipality.email}}">{{municipality.email}}</a></td></tr>
         <tr><td><b>Website</b></td><td><a href="{{municipality.website}}">{{municipality.website}}</a></td></tr>
         <tr><td><b>Validated</b></td><td>{{municipality.validated ? 'yes' : 'no'}}</td></tr>
+        <tr><td colspan="2"><a href="#/municipalities/{{municipality.id}}" class="btn btn-raised">Edit Municipality</a></td></tr>
     </table>
 </div>
 <div ng-if="related !== null" style="float: left; padding-right: 10px;">
