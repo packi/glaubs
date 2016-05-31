@@ -70,13 +70,21 @@
     * @memberOf glaubs.mailings.controllers.MailingsController
     */
     function createMailing() {
-        Mailings.create(vm.municipality_id, {
-            from_number: $scope.mailing.from_number,
-            to_number: $scope.mailing.to_number,
-            number_of_signatures: $scope.mailing.number_of_signatures,
-        }).success(function(mailing) {
-            $location.path('/municipalities/' + vm.municipality_id + '/mailings/' + mailing.pk);
-        });
+        if (!$scope.mailing.pk) {
+            Mailings.create(vm.municipality_id, {
+                from_number: $scope.mailing.from_number,
+                to_number: $scope.mailing.to_number,
+                number_of_signatures: $scope.mailing.number_of_signatures,
+            }).success(function(mailing) {
+                $location.path('/municipalities/' + vm.municipality_id + '/mailings/' + mailing.pk);
+            });
+        } else {
+            Mailings.update(vm.municipality_id, $scope.mailing.pk, $scope.mailing).then(
+                function(mailing) {
+                    refresh(null);
+                }
+            );
+        }
     }
 
     function deleteMailing(id) {

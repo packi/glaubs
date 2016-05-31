@@ -55,6 +55,37 @@ class MailingViewSet(viewsets.ViewSet):
 
         return response.Response({'status': 'Bad request', 'message': 'Couldnt validate'}, status=status.HTTP_400_BAD_REQUEST)
 
+    def update(self, request, id=None, municipality_id=None):
+        data = request.data
+        mailing = Mailing.objects.all().get(id=id, municipality=municipality_id)
+
+        serializer = self.serializer_class(data=data)
+
+        if serializer.is_valid():
+
+            old_state = mailing.state
+
+            for key, value in serializer.validated_data.items():
+                if key == 'municipality':
+                    continue
+
+                if getattr(mailing, key) != value:
+                    setattr(mailing, key, value)
+
+            # mark it as received if we have valid_signatures
+            if old_state == 'sent' and mailing.valid_signatures:
+                mailing.state = 'received'
+                mailing.received_on = datetime.datetime.now()
+
+            mailing.save()
+
+            serializer = self.serializer_class(mailing)
+            serializer.data['municipality'] = None
+
+            return response.Response(serializer.data)
+
+        return response.Response({'status': 'Bad request', 'message': 'Couldnt validate'}, status=status.HTTP_400_BAD_REQUEST)
+
     def retrieve(self, request, id=None, municipality_id=None):
         mailing = Mailing.objects.all().get(id=id, municipality=municipality_id)
         serializer = self.serializer_class(mailing)
