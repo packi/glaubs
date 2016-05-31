@@ -42,17 +42,23 @@
 
 <table>
     <tr>
+        <th>From</th>
+        <th>To</th>
         <th>Sent on</th>
         <th>Received on</th>
         <th>State</th>
-        <th>Number of Signatures</th>
+        <th># Signatures</th>
+        <th>Valid Signatures</th>
         <th>Actions</th>
     </tr>
     <tr ng-repeat="m in mailings">
+        <td>{{m.from_number}}</td>
+        <td>{{m.to_number}}</td>
         <td>{{m.sent_on | date}}</td>
         <td>{{m.received_on | date}}</td>
         <td>{{m.state}}</td>
         <td>{{m.number_of_signatures}}</td>
+        <td>{{m.valid_signatures}}</td>
         <td><a href="#/municipalities/{{municipality.id}}/mailings/{{m.pk}}">Details</a></td>
     </tr>
 </table>
