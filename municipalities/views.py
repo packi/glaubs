@@ -43,6 +43,9 @@ class SearchMunicipality(APIView):
             elif name is not None:
                 municipalities = Municipality.objects.filter(Q(name__startswith=name))
 
+            # prioritize main municipalities
+            municipalities = municipalities.order_by('-main_municipality')
+
             serializer = self.serializer_class(data=municipalities[:50], many=True)
             serializer.is_valid()
             return response.Response(serializer.data)
