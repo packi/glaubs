@@ -7,7 +7,7 @@
                autocomplete="off"
                ng-model="query"
                placeholder="ex. 8001"
-               uib-typeahead="m.zip_code + ' ' + m.name for m in vm.lookupMunicipality($viewValue)"
+               uib-typeahead="m.zip_code + ' ' + m.name + (m.main_municipality ? '*' : '') for m in vm.lookupMunicipality($viewValue)"
                typeahead-loading="loadingLocations"
                typeahead-no-results="noResults"
                typeahead-on-select="vm.selected($item)" />
