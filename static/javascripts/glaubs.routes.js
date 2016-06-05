@@ -24,6 +24,10 @@
       controller: 'MailingsController',
       controllerAs: 'vm',
       templateUrl: '/static/templates/mailings/mailings_editor.html'
+    }).when('/returns', {
+      controller: 'ReturnsController',
+      controllerAs: 'vm',
+      templateUrl: '/static/templates/returns/returns.html'
     }).otherwise('/municipalities');
   }
 })();

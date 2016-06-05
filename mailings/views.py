@@ -101,6 +101,24 @@ class MailingMaxNumber(views.APIView):
         return response.Response({'max_number': max_number['to_number__max']})
 
 
+class MailingSearch(views.APIView):
+    serializer_class = MailingSerializer
+
+    def get(self, request):
+        query = request.query_params['q']
+
+        try:
+            number = int(query)
+        except ValueError:
+            return response.Response({'status': 'Bad request', 'message': 'q must be an int'}, status=status.HTTP_400_BAD_REQUEST)
+
+        mailings = Mailing.objects.filter(from_number__lte=number, to_number__gte=number)
+        print(mailings.query)
+        serializer = self.serializer_class(data=mailings, many=True)
+        serializer.is_valid()
+        return response.Response(serializer.data)
+
+
 class PDFView(views.APIView):
 
     def get(self, request):

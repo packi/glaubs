@@ -21,7 +21,7 @@ from rest_framework_nested import routers
 from glaubs.views import IndexView
 
 from municipalities.views import MunicipalityViewSet, SearchMunicipality, PrimaryMunicipality, RelatedMunicipalities
-from mailings.views import MailingViewSet, MailingMaxNumber, PDFView
+from mailings.views import MailingViewSet, MailingMaxNumber, MailingSearch, PDFView
 
 router = routers.SimpleRouter()
 router.register(r'municipalities', MunicipalityViewSet)
@@ -38,5 +38,6 @@ urlpatterns = patterns(
     url(r'^api/v1/municipalities/search$', SearchMunicipality.as_view()),
     url(r'^api/v1/mailings/max_to_number$', MailingMaxNumber.as_view()),
     url(r'^api/v1/mailings/pdf$', PDFView.as_view()),
+    url(r'^api/v1/mailings/search$', MailingSearch.as_view()),
     url(r'^.*$', IndexView.as_view(), name='index'),
 )
