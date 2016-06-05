@@ -24,6 +24,6 @@
       controller: 'MailingsController',
       controllerAs: 'vm',
       templateUrl: '/static/templates/mailings/mailings_editor.html'
-    }).otherwise('/');
+    }).otherwise('/municipalities');
   }
 })();
