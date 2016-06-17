@@ -9,6 +9,7 @@
       'glaubs.municipalities',
       'glaubs.mailings',
       'glaubs.returns',
+      'glaubs.reminders',
     ])
     .run(run);
 
@@ -23,6 +24,9 @@
 
   angular
     .module('glaubs.returns', []);
+
+  angular
+    .module('glaubs.reminders', []);
 
   angular
     .module('glaubs.routes', ['ngRoute']);

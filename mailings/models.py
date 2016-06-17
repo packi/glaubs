@@ -11,6 +11,7 @@ class Mailing(models.Model):
     valid_signatures = models.IntegerField(null=True)
     invalid_signatures = models.IntegerField(null=True)
     pdf_file = models.CharField(max_length=256, null=True)
+    called_on = models.DateTimeField(null=True)
 
     municipality = models.ForeignKey('municipalities.Municipality')
 

@@ -5,6 +5,7 @@
     .module('glaubs.municipalities', [
       'glaubs.municipalities.controllers',
       'glaubs.municipalities-edit.controllers',
+      'glaubs.municipalities-reminder.controllers',
       'glaubs.municipalities.services',
       'glaubs.municipalities.directives',
     ]);
@@ -14,6 +15,9 @@
 
   angular
     .module('glaubs.municipalities-edit.controllers', []);
+
+  angular
+    .module('glaubs.municipalities-reminder.controllers', []);
 
   angular
     .module('glaubs.municipalities.services', []);

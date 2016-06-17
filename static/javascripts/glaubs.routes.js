@@ -20,6 +20,10 @@
       controller: 'MunicipalitiesEditController',
       controllerAs: 'vm',
       templateUrl: '/static/templates/municipalities/municipalities_editor.html'
+    }).when('/municipalities/:id/reminder', {
+      controller: 'MunicipalitiesReminderController',
+      controllerAs: 'vm',
+      templateUrl: '/static/templates/municipalities/municipalities_reminder.html'
     }).when('/municipalities/:municipality_id/mailings/:mailing_id', {
       controller: 'MailingsController',
       controllerAs: 'vm',
@@ -28,6 +32,10 @@
       controller: 'ReturnsController',
       controllerAs: 'vm',
       templateUrl: '/static/templates/returns/returns.html'
+    }).when('/reminders', {
+      controller: 'RemindersController',
+      controllerAs: 'vm',
+      templateUrl: '/static/templates/reminders/reminders.html'
     }).otherwise('/municipalities');
   }
 })();

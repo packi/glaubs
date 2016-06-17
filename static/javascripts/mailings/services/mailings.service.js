@@ -15,6 +15,7 @@
             load_one: load_one,
             update: update,
             get_max_number: get_max_number,
+            mark: mark,
         };
 
         return Mailings;
@@ -44,6 +45,9 @@
             return $http.delete('/api/v1/municipalities/' + municipality_id + '/mailings/' + id + '/');
         }
 
+        function mark(municipality_id, as, state) {
+            return $http.post('/api/v1/municipalities/' + municipality_id + '/mailings/mark?as=' + as + '&state=' + state);
+        }
 
     }
 })();

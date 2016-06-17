@@ -119,6 +119,32 @@ class MailingSearch(views.APIView):
         return response.Response(serializer.data)
 
 
+class MailingsRemider(views.APIView):
+    serializer_class = MailingSerializer
+
+    def get(self, request):
+        state = request.query_params.get('state', 'sent')
+        mailings = Mailing.objects.filter(state=state).order_by('-number_of_signatures')
+        serializer = self.serializer_class(data=mailings, many=True)
+        serializer.is_valid()
+        return response.Response(serializer.data)
+
+
+class MailingsMark(views.APIView):
+
+    def post(self, request, municipality_id):
+        print(repr(request.query_params))
+        as_ = request.query_params['as']
+        state = request.query_params['state']
+        mailings = Mailing.objects.filter(state=state, municipality_id=municipality_id)
+        if as_ == 'called':
+            mailings.update(state=as_, called_on=datetime.datetime.now())
+        else:
+            mailings.update(state=as_)
+
+        return response.Response({'success': True})
+
+
 class PDFView(views.APIView):
 
     def get(self, request):
