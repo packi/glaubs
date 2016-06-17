@@ -73,7 +73,7 @@ class MailingViewSet(viewsets.ViewSet):
                     setattr(mailing, key, value)
 
             # mark it as received if we have valid_signatures
-            if old_state == 'sent' and mailing.valid_signatures:
+            if old_state in ('sent', 'called') and mailing.valid_signatures:
                 mailing.state = 'received'
                 mailing.received_on = datetime.datetime.now()
 
