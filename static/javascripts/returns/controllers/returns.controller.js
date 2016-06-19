@@ -31,6 +31,8 @@
                     $scope.mailings = mailings;
                     if (mailings.length == 1) {
                         $location.path('/municipalities/' + mailings[0].municipality + '/mailings/' + mailings[0].pk);
+                    } else {
+                        $scope.mailings = mailings;
                     }
                 });
         } else {
