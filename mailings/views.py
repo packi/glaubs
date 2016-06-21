@@ -168,7 +168,7 @@ class PDFView(views.APIView):
         env = Environment(loader=PackageLoader('glaubs', 'tex'))
         template = env.get_template(os.path.join(mailing.municipality.language, 'anschreiben.tex'))
         params = {
-            'recipient': mailing.municipality.address.replace('\n', '\\\\'),
+            'recipient': mailing.municipality.address.replace('\n', ' \\\\ '),
             'listCount': mailing.to_number - mailing.from_number + 1,
             'listMin': mailing.from_number,
             'listMax': mailing.to_number,
