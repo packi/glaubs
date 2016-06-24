@@ -20,6 +20,10 @@
         </div>
     </div>
 </form>
+
+<uib-alert ng-if="municipality !== null && !municipality.verified" type="danger">Main municipality not verified!</uib-alert>
+<uib-alert ng-if="multiple_main_municipalities" type="danger">Multiple main municipalities, please correct before continuing!</uib-alert>
+
 <div ng-if="selected !== null" style="float: left; padding-right: 10px;">
     <h3>Selected Municipality</h3>
     <table>
@@ -30,7 +34,7 @@
         <tr><td><b>Phone</b></td><td><a href="tel:{{selected.phone_number}}">{{selected.phone_number}}</a></td></tr>
         <tr><td><b>E-Mail</b></td><td><a href="mailto:{{selected.email}}">{{selected.email}}</a></td></tr>
         <tr><td><b>Website</b></td><td><a href="{{selected.website}}">{{selected.website}}</a></td></tr>
-        <tr><td><b>Validated</b></td><td>{{selected.validated ? 'yes' : 'no'}}</td></tr>
+        <tr><td><b>Validated</b></td><td>{{selected.verified ? 'yes' : 'no'}}</td></tr>
         <tr><td colspan="2"><a href="#/municipalities/{{selected.id}}" class="btn btn-raised">Edit Municipality</a></td></tr>
     </table>
 </div>
@@ -44,7 +48,7 @@
         <tr><td><b>Phone</b></td><td><a href="tel:{{municipality.phone_number}}">{{municipality.phone_number}}</a></td></tr>
         <tr><td><b>E-Mail</b></td><td><a href="mailto:{{municipality.email}}">{{municipality.email}}</a></td></tr>
         <tr><td><b>Website</b></td><td><a href="{{municipality.website}}">{{municipality.website}}</a></td></tr>
-        <tr><td><b>Validated</b></td><td>{{municipality.validated ? 'yes' : 'no'}}</td></tr>
+        <tr><td><b>Validated</b></td><td>{{municipality.verified ? 'yes' : 'no'}}</td></tr>
         <tr><td colspan="2"><a href="#/municipalities/{{municipality.id}}" class="btn btn-raised">Edit Municipality</a></td></tr>
     </table>
 </div>

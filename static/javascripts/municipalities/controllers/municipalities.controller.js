@@ -21,6 +21,7 @@
     $scope.municipality = null;
     $scope.selected = null;
     $scope.related = null;
+    $scope.multiple_main_municipalities = false;
 
     angular.element('#searchMunicipality__query').focus()
 
@@ -65,15 +66,21 @@
             $scope.municipality = municipality;
         });
         Municipalities.related($item.id).success(function(related) {
+            var number_of_primaries = 0;
             $scope.related = related;
+            $scope.multiple_main_municipalities = false;
             $scope.related_names = $sce.trustAsHtml(related.map(function (m) {
                 var result = m.name + ' (' + m.zip_code + ')';
                 if (m.primary) {
+                    number_of_primaries++;
                     return '<b>' + result + '</b>';
                 } else {
                     return result;
                 }
             }).join(', '));
+            if (number_of_primaries > 1) {
+                $scope.multiple_main_municipalities = true;
+            }
         });
     }
 

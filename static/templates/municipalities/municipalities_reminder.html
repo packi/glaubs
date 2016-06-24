@@ -8,7 +8,7 @@
         <tr><td><b>Phone</b></td><td><a href="tel:{{municipality.phone_number}}">{{municipality.phone_number}}</a></td></tr>
         <tr><td><b>E-Mail</b></td><td><a href="mailto:{{municipality.email}}">{{municipality.email}}</a></td></tr>
         <tr><td><b>Website</b></td><td><a href="{{municipality.website}}">{{municipality.website}}</a></td></tr>
-        <tr><td><b>Validated</b></td><td>{{municipality.validated ? 'yes' : 'no'}}</td></tr>
+        <tr><td><b>Validated</b></td><td>{{municipality.verified ? 'yes' : 'no'}}</td></tr>
         <tr><td><b>Comment</b></td><td><textarea rows="5" cols="80" type="text" class="form-control" id="reminder__comment" ng-model="municipality.comment" placeholder="..." /></td></tr>
         <tr><td colspan="2"><a href="#/municipalities/{{municipality.id}}" class="btn btn-raised">Edit Municipality</a></td></tr>
         <tr><td colspan="2"><a ng-click="vm.markAsCalled()" class="btn btn-raised">Mark as called</a></td></tr>
