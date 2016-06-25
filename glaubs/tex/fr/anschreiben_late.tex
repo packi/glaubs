@@ -1,0 +1,58 @@
+\documentclass[a4paper,10pt,parskip=half,french]{scrlttr2}
+\usepackage[utf8]{inputenc}
+\usepackage{babel}
+\usepackage{fullpage}
+\usepackage{graphicx}
+
+\LoadLetterOption{SN}
+\setlength{\parindent}{0pt}
+\KOMAoptions{foldmarks=hb}
+\makeatletter
+\@setplength{toaddrvpos}{55mm}
+\@setplength{toaddrheight}{25mm}
+\@setplength{sigbeforevskip}{0mm}
+\@setplength{firstheadwidth}{\textwidth}
+\makeatother
+
+\renewcommand*{\raggedsignature}{\raggedright}
+
+\begin{document}
+
+\begin{letter}{ {{ recipient }} }
+
+\setkomavar{fromname}{Referendum Stop BÜPF}
+\setkomavar{fromaddress}{Röschibachstrasse 26 \\ 8037 Zürich \\ Tel. 079 7754555 \\E-Mail: ok@stopbuepf.ch}
+
+\setkomavar{backaddress}{Referendum Stop BÜPF, 8037 Zürich}
+
+\setkomavar{subject}{Attestation de la qualité d’électeur: Référendum fédéral contre la loi fédérale sur la surveillance de la correspondance par poste et télécommunication (LSCPT)}
+
+\setkomavar{signature}{
+\includegraphics[width=5cm]{sigJAN} \\
+\vspace{3mm}
+COMITÉ RÉFÉRENDAIRE FÉDÉRAL \\
+Referendum Stop BÜPF \\
+Jorgo Ananiadis
+}
+
+\opening{Madame, Monsieur,}
+
+Nous fondant sur les articles 62 et 63 de la loi fédérale du 17 décembre 1976 sur les droits politiques, nous vous remettons ci-joint {{ listCount }} listes de signatures (Nos  {{ listMin }} à {{ listMax }}) comprenant au total {{ sigCount }} signatures à l’appui de notre référendum fédéral contre la
+
+\leftskip=3mm
+Loi fédérale sur la surveillance de la correspondance par poste et télécommunication (LSCPT)
+
+\leftskip=0mm
+Nous vous prions de bien vouloir attester le droit de vote des signataires. On vous prie de retourner les listes de signatures jusqu'au 4 juillet 2016 au plus tard et par Courrier A, à l’adresse suivante:
+
+\leftskip=3mm
+Referendum Stop BÜPF \\
+Röschibachstrasse 26 \\
+8037 Zürich
+
+\leftskip=0mm
+\closing{En vous en remerciant par avance, nous vous prions d’agréer, Madame, Monsieur, l’assurance de notre considération distinguée.}
+
+\end{letter}
+\end{document}
+
