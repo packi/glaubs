@@ -125,7 +125,7 @@ class MailingsRemider(views.APIView):
 
     def get(self, request):
         state = request.query_params.get('state', 'sent')
-        mailings = Mailing.objects.filter(state=state).order_by('-number_of_signatures')
+        mailings = Mailing.objects.filter(state=state).order_by('sent_on')
         serializer = self.serializer_class(data=mailings, many=True)
         serializer.is_valid()
         return response.Response(serializer.data)
