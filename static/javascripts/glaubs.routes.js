@@ -36,6 +36,10 @@
       controller: 'RemindersController',
       controllerAs: 'vm',
       templateUrl: '/static/templates/reminders/reminders.html'
+    }).when('/reminders_by_municipality', {
+      controller: 'RemindersByMunicipalityController',
+      controllerAs: 'vm',
+      templateUrl: '/static/templates/reminders/reminders_by_municipality.html'
     }).otherwise('/municipalities');
   }
 })();

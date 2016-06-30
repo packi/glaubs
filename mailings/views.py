@@ -8,11 +8,12 @@ from wsgiref.util import FileWrapper
 from jinja2 import Environment, PackageLoader
 
 from django.conf import settings
-from django.db.models import Max
+from django.db.models import Max, Count, Sum
 from django.http import HttpResponse
 
 from rest_framework import viewsets, response, status, views
 
+from municipalities.models import Municipality
 from mailings.models import Mailing
 from mailings.serializers import MailingSerializer
 
@@ -128,6 +129,19 @@ class MailingsRemider(views.APIView):
         serializer = self.serializer_class(data=mailings, many=True)
         serializer.is_valid()
         return response.Response(serializer.data)
+
+
+class MailingsMunicipalityRemider(views.APIView):
+
+    def get(self, request):
+        state = request.query_params.get('state', 'sent')
+        mailings = Mailing.objects.values('municipality_id', 'municipality__name', 'municipality__zip_code')\
+                                  .filter(state=state)\
+                                  .annotate(num_m=Count('number_of_signatures')).annotate(num_s=Sum('number_of_signatures'))\
+                                  .order_by('-num_s')\
+                                  .filter(num_s__gt=0)
+        m = list(mailings)
+        return response.Response(m)
 
 
 class MailingsMark(views.APIView):

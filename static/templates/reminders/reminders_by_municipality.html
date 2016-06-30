@@ -1,0 +1,35 @@
+<h1>Sent but not yet received mailings</h1>
+<table>
+    <tr>
+        <th>ZIP Code</th>
+        <th>Name</th>
+        <th>Number of signatures</th>
+        <th>Number of mailings</th>
+        <th>Actions</th>
+    </tr>
+    <tr ng-repeat="m in sent_mailings">
+        <td>{{m.municipality__zip_code}}</td>
+        <td>{{m.municipality__name}}</td>
+        <td>{{m.num_s}}</td>
+        <td>{{m.num_m}}</td>
+        <td><a href="#/municipalities/{{m.municipality_id}}/reminder">Remind Municipality</a></td>
+    </tr>
+</table>
+
+<h1>Mailings already called about</h1>
+<table>
+    <tr>
+        <th>ZIP Code</th>
+        <th>Name</th>
+        <th>Number of signatures</th>
+        <th>Number of mailings</th>
+        <th>Actions</th>
+    </tr>
+    <tr ng-repeat="m in called_mailings">
+        <td>{{m.municipality__zip_code}}</td>
+        <td>{{m.municipality__name}}</td>
+        <td>{{m.num_s}}</td>
+        <td>{{m.num_m}}</td>
+        <td><a href="#/municipalities/{{m.municipality_id}}/reminder">Remind Municipality</a></td>
+    </tr>
+</table>
