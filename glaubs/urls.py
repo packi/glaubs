@@ -14,19 +14,22 @@ Including another URLconf
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
 from django.conf.urls import include, url
-from django.contrib import admin
 
 from rest_framework_nested import routers
 
 from glaubs.views import IndexView
 
-from municipalities.views import MunicipalityViewSet, SearchMunicipality, PrimaryMunicipality, RelatedMunicipalities
-from mailings.views import MailingViewSet, MailingsMark, MailingMaxNumber, MailingsRemider, MailingsMunicipalityRemider, MailingSearch, PDFView
+from municipalities.views import MunicipalityViewSet, SearchMunicipality, \
+    PrimaryMunicipality, RelatedMunicipalities
+from mailings.views import MailingViewSet, MailingsMark, MailingMaxNumber, \
+    MailingsRemider, MailingsMunicipalityRemider, MailingSearch, PDFView
 
 router = routers.SimpleRouter()
 router.register(r'municipalities', MunicipalityViewSet)
 
-domains_router = routers.NestedSimpleRouter(router, r'municipalities', lookup='municipality')
+domains_router = \
+    routers.NestedSimpleRouter(
+        router, r'municipalities', lookup='municipality')
 domains_router.register(r'mailings', MailingViewSet, base_name='mailings')
 
 urlpatterns = [
@@ -39,7 +42,11 @@ urlpatterns = [
     url(r'^api/v1/mailings/pdf$', PDFView.as_view()),
     url(r'^api/v1/mailings/search$', MailingSearch.as_view()),
     url(r'^api/v1/mailings/reminders$', MailingsRemider.as_view()),
-    url(r'^api/v1/mailings/reminders/by_municipality$', MailingsMunicipalityRemider.as_view()),
-    url(r'^api/v1/municipalities/(?P<municipality_id>[0-9]+)/mailings/mark$', MailingsMark.as_view()),
+    url(
+        r'^api/v1/mailings/reminders/by_municipality$',
+        MailingsMunicipalityRemider.as_view()),
+    url(
+        r'^api/v1/municipalities/(?P<municipality_id>[0-9]+)/mailings/mark$',
+        MailingsMark.as_view()),
     url(r'^.*$', IndexView.as_view(), name='index'),
 ]

@@ -14,7 +14,8 @@ class Mailing(models.Model):
     pdf_file = models.CharField(max_length=256, null=True)
     called_on = models.DateTimeField(null=True)
 
-    municipality = models.ForeignKey('municipalities.Municipality', on_delete=models.PROTECT)
+    municipality = models.ForeignKey(
+        'municipalities.Municipality', on_delete=models.PROTECT)
 
     created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)    
+    updated_at = models.DateTimeField(auto_now=True)
