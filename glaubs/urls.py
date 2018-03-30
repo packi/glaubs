@@ -24,9 +24,13 @@ from municipalities.views import MunicipalityViewSet, SearchMunicipality, \
 from mailings.views import MailingViewSet, MailingsMark, MailingMaxNumber, \
     MailingsRemider, MailingsMunicipalityRemider, MailingSearch, PDFView, \
     MailingStatistics
+from people.views import PersonViewSet, CommitteeViewSet, CampaignViewSet
 
 router = routers.SimpleRouter()
 router.register(r'municipalities', MunicipalityViewSet)
+router.register(r'people', PersonViewSet)
+router.register(r'campaign', CampaignViewSet)
+router.register(r'committee', CommitteeViewSet)
 
 domains_router = \
     routers.NestedSimpleRouter(
