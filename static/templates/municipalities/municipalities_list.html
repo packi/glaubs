@@ -1,0 +1,16 @@
+
+<table>
+<tr>
+<th>
+Name
+</th>
+<th>
+ZIP Code
+</th>
+<th>
+Actions
+</th>
+</tr>
+<tr ng-repeat="m in municipalities"><td>{{m.name}}</td><td>{{m.zip_code}}</td><td><a href="" confirmed-click="vm.deleteMunicipality(m.id)"
+    ng-confirm-click="Are you sure to delete {{m.name}}?">Delete</a> <a href="#/municipalities/{{m.id}}">Details</a> <a href="#/municipalities/{{m.id}}/mailings/new">New Mailing</a></td></tr>
+</table>

@@ -1,7 +1,7 @@
 from rest_framework import viewsets
 
-from people.models import Person, Committee, Campaign
-from people.serializers import PersonSerializer, CommitteeSerializer, \
+from .models import Person, Committee, Campaign
+from .serializers import PersonSerializer, CommitteeSerializer, \
     CampaignSerializer
 
 

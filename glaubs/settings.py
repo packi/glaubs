@@ -43,7 +43,7 @@ INSTALLED_APPS = [
     'compressor',
     'municipalities',
     'mailings',
-    'people',
+    'campaign',
 ]
 
 MIDDLEWARE_CLASSES = [

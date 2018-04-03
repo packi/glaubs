@@ -1,0 +1,59 @@
+\documentclass[a4paper,10pt,parskip=half,french]{scrlttr2}
+\usepackage[utf8]{inputenc}
+\usepackage{babel}
+\usepackage{fullpage}
+\usepackage{graphicx}
+
+\LoadLetterOption{SN}
+\setlength{\parindent}{0pt}
+\KOMAoptions{foldmarks=hb}
+\makeatletter
+\@setplength{toaddrvpos}{55mm}
+\@setplength{toaddrheight}{25mm}
+\@setplength{sigbeforevskip}{0mm}
+\@setplength{firstheadwidth}{\textwidth}
+\makeatother
+
+\renewcommand*{\raggedsignature}{\raggedright}
+
+\begin{document}
+
+\begin{letter}{{{ recipient }}}
+
+\setkomavar{fromname}{Referendum Stop BÜPF}
+\setkomavar{fromaddress}{Röschibachstrasse 26 \\ 8037 Zürich \\ Tel. 079 7754555 \\E-Mail: ok@stopbuepf.ch}
+
+\setkomavar{backaddress}{Referendum Stop BÜPF, 8037 Zürich}
+
+\setkomavar{subject}{SOMMATION - Attestation de la qualité d’électeur: Référendum fédéral contre la loi fédérale sur la surveillance de la correspondance par poste et télécommunication (LSCPT)}
+
+\setkomavar{signature}{
+\includegraphics[width=5cm]{sigJAN} \\
+\vspace{3mm}
+COMITÉ RÉFÉRENDAIRE FÉDÉRAL \\
+Referendum Stop BÜPF \\
+Jorgo Ananiadis
+}
+
+\opening{Madame, Monsieur,}
+
+En date du {{ sentDate }}, nous vous avons adressé la lettre ci-jointe accompagnée du nombre de listes de signatures correspondant au nombre de signatures indiqué, en vue de l’attestation de la qualité d’électeur (copie en annexe). En parcourant notre fichier relatif aux renvois en suspens, nous avons constaté que nous n’avions pas encore reçu d’attestations de la qualité d’électeur pour les listes de signatures que nous vous avions remises. 
+
+Selon l’article 62, 2 e alinéa, de la loi fédérale du 17 décembre 1976 sur les droits politiques, le service compétent doit délivrer l’attestation de la qualité d’électeur et renvoyer « sans retard les listes aux expéditeurs ». 
+
+Nous vous prions dès lors de bien vouloir renvoyer sans retard les listes de signatures attestées à l’adresse suivante:
+
+\leftskip=3mm
+Referendum Stop BÜPF, Röschibachstrasse 26, 8037 Zürich
+
+\leftskip=0mm
+Nous vous rendons attentif au fait que le délai référendaire échoit le 7.7.2016. Un recours pour retard injustifié auprès de votre autorité de surveillance devrait, pour nous comme pour vous, occasionner bien plus de travail que l’accomplissement de vos devoirs légaux.
+
+Si notre sommation devait croiser votre envoi, veuillez alors considérer cette lettre comme étant sans objet.
+
+\leftskip=0mm
+\closing{En vous en remerciant par avance, nous vous prions d’agréer, Madame, Monsieur, l’assurance de notre considération distinguée.}
+
+\end{letter}
+\end{document}
+

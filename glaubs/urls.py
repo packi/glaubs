@@ -24,7 +24,7 @@ from municipalities.views import MunicipalityViewSet, SearchMunicipality, \
 from mailings.views import MailingViewSet, MailingsMark, MailingMaxNumber, \
     MailingsRemider, MailingsMunicipalityRemider, MailingSearch, PDFView, \
     MailingStatistics
-from people.views import PersonViewSet, CommitteeViewSet, CampaignViewSet
+from campaign.views import PersonViewSet, CommitteeViewSet, CampaignViewSet
 
 router = routers.SimpleRouter()
 router.register(r'municipalities', MunicipalityViewSet)

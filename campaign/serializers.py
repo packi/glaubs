@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from people.models import Person, Committee, Campaign
+from .models import Person, Committee, Campaign
 
 
 class PersonSerializer(serializers.ModelSerializer):
