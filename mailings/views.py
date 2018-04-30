@@ -116,6 +116,27 @@ class MailingMaxNumber(views.APIView):
         })
 
 
+class MailingStatistics(views.APIView):
+
+    def get(self, request):
+        signatures = Mailing.objects.all()\
+            .aggregate(Sum('number_of_signatures'), Sum('valid_signatures'))
+
+        not_received = Mailing.objects.exclude(state='received').aggregate(Sum('number_of_signatures'))
+
+        signatures_received = Mailing.objects.filter(state='received')\
+            .aggregate(Sum('number_of_signatures'), Sum('valid_signatures'))
+
+        return response.Response({
+            'number_of_signatures': signatures['number_of_signatures__sum'],
+            'valid_signatures': signatures['valid_signatures__sum'],
+            'signatures_not_received_yet': not_received['number_of_signatures__sum'],
+            'invalid_signatures':
+                signatures_received['number_of_signatures__sum'] - \
+                signatures_received['valid_signatures__sum'],
+        })
+
+
 class MailingSearch(views.APIView):
     serializer_class = MailingSerializer
 

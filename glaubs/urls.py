@@ -22,7 +22,8 @@ from glaubs.views import IndexView
 from municipalities.views import MunicipalityViewSet, SearchMunicipality, \
     PrimaryMunicipality, RelatedMunicipalities
 from mailings.views import MailingViewSet, MailingsMark, MailingMaxNumber, \
-    MailingsRemider, MailingsMunicipalityRemider, MailingSearch, PDFView
+    MailingsRemider, MailingsMunicipalityRemider, MailingSearch, PDFView, \
+    MailingStatistics
 
 router = routers.SimpleRouter()
 router.register(r'municipalities', MunicipalityViewSet)
@@ -42,6 +43,7 @@ urlpatterns = [
     url(r'^api/v1/mailings/pdf$', PDFView.as_view()),
     url(r'^api/v1/mailings/search$', MailingSearch.as_view()),
     url(r'^api/v1/mailings/reminders$', MailingsRemider.as_view()),
+    url(r'^api/v1/mailings/statistics$', MailingStatistics.as_view()),
     url(
         r'^api/v1/mailings/reminders/by_municipality$',
         MailingsMunicipalityRemider.as_view()),
