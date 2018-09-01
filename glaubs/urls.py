@@ -13,7 +13,9 @@ Including another URLconf
     1. Import the include() function: from django.conf.urls import url, include
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
+from django.contrib import admin
 from django.conf.urls import include, url
+from django.urls import path
 
 from rest_framework_nested import routers
 
@@ -38,6 +40,7 @@ domains_router = \
 domains_router.register(r'mailings', MailingViewSet, base_name='mailings')
 
 urlpatterns = [
+    path('admin/', admin.site.urls),
     url(r'^api/v1/municipalities/primary$', PrimaryMunicipality.as_view()),
     url(r'^api/v1/municipalities/related$', RelatedMunicipalities.as_view()),
     url(r'^api/v1/', include(router.urls)),
