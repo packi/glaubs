@@ -127,13 +127,20 @@ class MailingStatistics(views.APIView):
         signatures_received = Mailing.objects.filter(state='received')\
             .aggregate(Sum('number_of_signatures'), Sum('valid_signatures'))
 
+        if all([
+            signatures_received['number_of_signatures__sum'],
+            signatures_received['valid_signatures__sum']]):
+            invalid_signatures = \
+                signatures_received['number_of_signatures__sum'] - \
+                signatures_received['valid_signatures__sum']
+        else:
+            invalid_signatures = 0
+
         return response.Response({
             'number_of_signatures': signatures['number_of_signatures__sum'],
             'valid_signatures': signatures['valid_signatures__sum'],
             'signatures_not_received_yet': not_received['number_of_signatures__sum'],
-            'invalid_signatures':
-                signatures_received['number_of_signatures__sum'] - \
-                signatures_received['valid_signatures__sum'],
+            'invalid_signatures': invalid_signatures,
         })
 
 
