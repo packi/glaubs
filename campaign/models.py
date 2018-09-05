@@ -1,10 +1,13 @@
 from django.db import models
+from django.conf import settings
 
 
 class Person(models.Model):
     full_name = models.CharField(max_length=100, null=True)
-    signature_file = models.TextField(null=True, blank=True)
-    phone_number = models.TextField(null=True, blank=True)
+
+    # not using ImageField here as we don't use its features
+    signature_file = models.FileField(upload_to='signatures/')
+    phone_number = models.CharField(max_length=20, null=True, blank=True)
 
     active = models.BooleanField()
 
@@ -14,9 +17,14 @@ class Person(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
+    user = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE,
+    )
+
 
 class Committee(models.Model):
-    name = models.TextField()
+    name = models.CharField(max_length=100)
     address = models.TextField(null=True, blank=True)
     phone_number = models.TextField(null=True, blank=True)
     email = models.TextField(null=True, blank=True)
@@ -31,7 +39,7 @@ class Committee(models.Model):
 
 
 class Campaign(models.Model):
-    name = models.TextField()
+    name = models.CharField(max_length=100)
     address = models.TextField(null=True, blank=True)
     phone_number = models.TextField(null=True, blank=True)
     email = models.TextField(null=True, blank=True)
@@ -42,8 +50,8 @@ class Campaign(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
 
 
-class Envelopes(models.Model):
-    name = models.TextField()
+class Envelope(models.Model):
+    name = models.CharField(max_length=100)
     offset_top_mm = models.IntegerField()
     offset_left_mm = models.IntegerField()
 
